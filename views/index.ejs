@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page 1</title>
+    <script>
+        let data = {};
+
+        function submitForm() {
+            fetch('/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Data updated successfully');
+                    } else {
+                        console.error('Failed to update data');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function toggleData(textboxId, checkbox) {
+            if (checkbox.checked) {
+                data[textboxId] = document.getElementById(textboxId).value;
+            } else {
+                delete data[textboxId];
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Input Text Field</h1>
+    <form>
+        <p>
+            <label for="textbox1">Textbox 1</label>
+            <input type="text" id="textbox1" />
+            <input type="checkbox" id="checkbox2" onchange="toggleData('textbox1', this)" />
+        </p>
+
+        <p>
+            <label for="textbox2">Textbox 2</label>
+            <input type="text" id="textbox2" />
+            <input type="checkbox" id="checkbox2" onchange="toggleData('textbox2', this)" />
+        </p>
+
+        <p>
+            <label for="textbox3">Textbox 3</label>
+            <input type="text" id="textbox3" />
+            <input type="checkbox" id="checkbox2" onchange="toggleData('textbox2', this)" />
+        </p>
+
+
+        <p>
+            <label for="textbox4">Textbox 4</label>
+            <input type="text" id="textbox4" />
+            <input type="checkbox" id="checkbox2" onchange="toggleData('textbox2', this)" />
+        </p>
+
+        <p>
+            <label for="textbox5">Textbox 5</label>
+            <input type="text" id="textbox5" />
+            <input type="checkbox" id="checkbox2" onchange="toggleData('textbox2', this)" />
+        </p>
+
+        <p>
+            <label for="textbox6">Textbox 6</label>
+            <input type="text" id="textbox6" />
+            <input type="checkbox" id="checkbox2" onchange="toggleData('textbox2', this)" />
+        </p>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+</body>
+
+</html>

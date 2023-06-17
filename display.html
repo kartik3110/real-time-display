@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Display Data in Real-time</title>
+    <script>
+        function getData() {
+            fetch('http://localhost:3000/data')
+                .then(response => response.json())
+                .then(data => {
+                    const dataList = document.getElementById('dataList');
+                    dataList.innerHTML = '';
+
+                    //Object.keys(data) returns array of keys of data
+
+                    Object.keys(data).forEach((key) => {
+                        const li = document.createElement('li');
+                        li.textContent = key + ': ' + data[key];
+
+                        dataList.appendChild(li);
+                    });
+                });
+        }
+
+        setInterval(getData, 1000); // Poll every 1 second
+
+    </script>
+</head>
+
+<body>
+    <h1>Display Data in Real-time</h1>
+    <ul id="dataList"></ul>
+</body>
+
+</html>
